@@ -86,4 +86,24 @@ public class ReqresTests extends TestBase {
                 .then()
                 .statusCode(204);
     }
+
+    @Test
+    @DisplayName("6. Полное обновление пользователя (PUT)")
+    void putUserTest() {
+        String putData = "{\"name\": \"morpheus\", \"job\": \"zion resident\"}";
+
+        given()
+                .header(API_KEY_NAME, API_KEY_VALUE)
+                .contentType(JSON)
+                .body(putData)
+                .log().uri()
+                .when()
+                .put(USERS_ENDPOINT + "2")
+                .then()
+                .statusCode(200)
+                .body("name", equalTo("morpheus"))
+                .body("job", equalTo("zion resident"))
+                .body("updatedAt", notNullValue())
+                .log().all();
+    }
 }
