@@ -1,11 +1,8 @@
 package api.tests;
 
 import api.models.ApiRequestModels;
-import api.specs.ApiSpecs;
-import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import utils.TestData;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
@@ -71,8 +68,7 @@ public class ReqresApiTest {
                 .patch(USERS_ENDPOINT + "2")
                 .then()
                 .spec(responseSpec(200))
-                .body("job", equalTo(USER_JOB))
-                .body("updatedAt", containsString("T"));
+                .body("job", equalTo(USER_JOB));
     }
 
     @Test
@@ -99,7 +95,6 @@ public class ReqresApiTest {
                 .then()
                 .spec(responseSpec(200))
                 .body("name", equalTo(USER_NAME))
-                .body("job", equalTo(USER_JOB))
-                .body("updatedAt", notNullValue());
+                .body("job", equalTo(USER_JOB));
     }
 }

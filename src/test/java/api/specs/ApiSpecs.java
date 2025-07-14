@@ -9,15 +9,17 @@ import io.restassured.specification.ResponseSpecification;
 
 public class ApiSpecs {
 
-    protected static final String API_KEY_NAME = "x-api-key";
-    protected static final String API_KEY_VALUE = "reqres-free-v1";
+    private static final String BASE_URI = "https://reqres.in/api";
+    public static final String API_KEY_NAME = "x-api-key";
+    public static final String API_KEY_VALUE = "reqres-free-v1";
+
     public static final String USERS_ENDPOINT = "/users/";
     public static final String REGISTER_ENDPOINT = "/register";
     public static final String LOGIN_ENDPOINT = "/login";
 
     public static RequestSpecification requestSpec() {
         return new RequestSpecBuilder()
-                .setBaseUri("https://reqres.in/api")
+                .setBaseUri(BASE_URI)
                 .addHeader(API_KEY_NAME, API_KEY_VALUE)
                 .setContentType(ContentType.JSON)
                 .log(LogDetail.ALL)
