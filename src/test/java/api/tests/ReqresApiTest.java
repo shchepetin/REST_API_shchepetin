@@ -1,6 +1,9 @@
 package api.tests;
 
-import api.models.ApiRequestModels;
+import api.endpoints.Endpoints;
+import api.models.request.LoginRequest;
+import api.models.request.RegisterRequest;
+import api.models.request.UserRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,14 +12,14 @@ import static org.hamcrest.Matchers.*;
 import static utils.TestData.*;
 import static api.specs.ApiSpecs.*;
 
-public class ReqresApiTest {
+public class ReqresApiTest extends TestBase {
 
     @Test
     @DisplayName("1. Получение информации о пользователе")
     void getUserTest() {
         given(requestSpec())
                 .when()
-                .get(USERS_ENDPOINT + "2")
+                .get(Endpoints.USERS + "2")
                 .then()
                 .spec(responseSpec(200))
                 .body("data.id", equalTo(2))
@@ -26,14 +29,14 @@ public class ReqresApiTest {
     @Test
     @DisplayName("2. Регистрация нового пользователя")
     void registerUserTest() {
-        ApiRequestModels.RegisterRequest registerData = new ApiRequestModels.RegisterRequest()
+        RegisterRequest registerData = new RegisterRequest()
                 .setEmail(REGISTER_EMAIL)
                 .setPassword(REGISTER_PASSWORD);
 
         given(requestSpec())
                 .body(registerData)
                 .when()
-                .post(REGISTER_ENDPOINT)
+                .post(Endpoints.REGISTER)
                 .then()
                 .spec(responseSpec(200))
                 .body("id", notNullValue())
@@ -43,29 +46,29 @@ public class ReqresApiTest {
     @Test
     @DisplayName("3. Авторизация пользователя")
     void loginUserTest() {
-        ApiRequestModels.LoginRequest loginData = new ApiRequestModels.LoginRequest()
+        LoginRequest loginData = new LoginRequest()
                 .setEmail(LOGIN_EMAIL)
                 .setPassword(LOGIN_PASSWORD);
 
         given(requestSpec())
                 .body(loginData)
                 .when()
-                .post(LOGIN_ENDPOINT)
+                .post(Endpoints.LOGIN)
                 .then()
                 .spec(responseSpec(200))
                 .body("token", equalTo(LOGIN_TOKEN));
     }
 
     @Test
-    @DisplayName("4. Частичное обновление пользователя")
+    @DisplayName("4. Частичное обновление пользователя (PATCH)")
     void patchUserTest() {
-        ApiRequestModels.UserRequest updateData = new ApiRequestModels.UserRequest()
+        UserRequest updateData = new UserRequest()
                 .setJob(USER_JOB);
 
         given(requestSpec())
                 .body(updateData)
                 .when()
-                .patch(USERS_ENDPOINT + "2")
+                .patch(Endpoints.USERS + "2")
                 .then()
                 .spec(responseSpec(200))
                 .body("job", equalTo(USER_JOB));
@@ -76,7 +79,7 @@ public class ReqresApiTest {
     void deleteUserTest() {
         given(requestSpec())
                 .when()
-                .delete(USERS_ENDPOINT + "2")
+                .delete(Endpoints.USERS + "2")
                 .then()
                 .spec(responseSpec(204));
     }
@@ -84,14 +87,14 @@ public class ReqresApiTest {
     @Test
     @DisplayName("6. Полное обновление пользователя (PUT)")
     void putUserTest() {
-        ApiRequestModels.UserRequest updateData = new ApiRequestModels.UserRequest()
+        UserRequest updateData = new UserRequest()
                 .setName(USER_NAME)
                 .setJob(USER_JOB);
 
         given(requestSpec())
                 .body(updateData)
                 .when()
-                .put(USERS_ENDPOINT + "2")
+                .put(Endpoints.USERS + "2")
                 .then()
                 .spec(responseSpec(200))
                 .body("name", equalTo(USER_NAME))
