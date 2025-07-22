@@ -3,9 +3,9 @@
 Status Code: ${response.statusCode}
 
 Headers:
-<@list data.response.headers! [] as header>
-  ${header.name}: ${header.value}
-</@list>
+<#list response.headers![] as header>
+    ${header.name}: ${header.value}
+</#list>
 
 Body:
 ${response.body}
