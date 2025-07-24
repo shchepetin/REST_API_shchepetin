@@ -29,9 +29,7 @@ public class ReqresApiTest extends TestBase {
     @Test
     @DisplayName("2. Регистрация нового пользователя")
     void registerUserTest() {
-        RegisterRequest registerData = new RegisterRequest()
-                .setEmail(REGISTER_EMAIL)
-                .setPassword(REGISTER_PASSWORD);
+        RegisterRequest registerData = new RegisterRequest(REGISTER_EMAIL, REGISTER_PASSWORD);
 
         given(requestSpec())
                 .body(registerData)
@@ -46,9 +44,7 @@ public class ReqresApiTest extends TestBase {
     @Test
     @DisplayName("3. Авторизация пользователя")
     void loginUserTest() {
-        LoginRequest loginData = new LoginRequest()
-                .setEmail(LOGIN_EMAIL)
-                .setPassword(LOGIN_PASSWORD);
+        LoginRequest loginData = new LoginRequest(LOGIN_EMAIL, LOGIN_PASSWORD);
 
         given(requestSpec())
                 .body(loginData)
@@ -62,8 +58,7 @@ public class ReqresApiTest extends TestBase {
     @Test
     @DisplayName("4. Частичное обновление пользователя (PATCH)")
     void patchUserTest() {
-        UserRequest updateData = new UserRequest()
-                .setJob(USER_JOB);
+        UserRequest updateData = new UserRequest(null, USER_JOB);
 
         given(requestSpec())
                 .body(updateData)
@@ -87,9 +82,7 @@ public class ReqresApiTest extends TestBase {
     @Test
     @DisplayName("6. Полное обновление пользователя (PUT)")
     void putUserTest() {
-        UserRequest updateData = new UserRequest()
-                .setName(USER_NAME)
-                .setJob(USER_JOB);
+        UserRequest updateData = new UserRequest(USER_NAME, USER_JOB);
 
         given(requestSpec())
                 .body(updateData)
