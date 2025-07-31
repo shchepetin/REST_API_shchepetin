@@ -4,7 +4,10 @@ import api.endpoints.Endpoints;
 import api.models.request.LoginRequest;
 import api.models.request.RegisterRequest;
 import api.models.request.UserRequest;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -14,6 +17,9 @@ import static api.specs.ApiSpecs.*;
 
 public class ReqresApiTest extends TestBase {
 
+    @Owner("Ilya Shchepetin")
+    @Feature("Тестирование метода получения информации о пользователе")
+    @Tag("User")
     @Test
     @DisplayName("1. Получение информации о пользователе")
     void getUserTest() {
@@ -26,6 +32,9 @@ public class ReqresApiTest extends TestBase {
                 .body("data.email", equalTo(USER_EMAIL));
     }
 
+    @Owner("Ilya Shchepetin")
+    @Feature("Тестирование метода регистрации нового пользователя")
+    @Tag("Register")
     @Test
     @DisplayName("2. Регистрация нового пользователя")
     void registerUserTest() {
@@ -41,6 +50,9 @@ public class ReqresApiTest extends TestBase {
                 .body("token", notNullValue());
     }
 
+    @Owner("Ilya Shchepetin")
+    @Feature("Тестирование метода авторизации пользователя")
+    @Tag("Login")
     @Test
     @DisplayName("3. Авторизация пользователя")
     void loginUserTest() {
@@ -55,6 +67,9 @@ public class ReqresApiTest extends TestBase {
                 .body("token", equalTo(LOGIN_TOKEN));
     }
 
+    @Owner("Ilya Shchepetin")
+    @Feature("Тестирование метода честичного обновления информации о пользователе")
+    @Tag("Patch")
     @Test
     @DisplayName("4. Частичное обновление пользователя (PATCH)")
     void patchUserTest() {
@@ -69,6 +84,9 @@ public class ReqresApiTest extends TestBase {
                 .body("job", equalTo(USER_JOB));
     }
 
+    @Owner("Ilya Shchepetin")
+    @Feature("Тестирование метода удаления пользователя")
+    @Tag("Delete")
     @Test
     @DisplayName("5. Удаление пользователя")
     void deleteUserTest() {
@@ -79,6 +97,9 @@ public class ReqresApiTest extends TestBase {
                 .spec(responseSpec(204));
     }
 
+    @Owner("Ilya Shchepetin")
+    @Feature("Тестирование метода обновления информации о пользователе")
+    @Tag("Put")
     @Test
     @DisplayName("6. Полное обновление пользователя (PUT)")
     void putUserTest() {
