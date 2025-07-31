@@ -25,7 +25,7 @@
 |---|---|---|---|---|---|---|---|---|
 | <img src="media/logo/Java.svg" width="50" height="50" alt="Java"/> | <img src="media/logo/Idea.svg" width="50" height="50" alt="IDEA"/> | <img src="media/logo/GitHub.svg" width="50" height="50" alt="Github"/> | <img src="media/logo/JUnit5.svg" width="50" height="50" alt="JUnit 5"/> | <img src="media/logo/Gradle.svg" width="50" height="50" alt="Gradle"/> | <img src="media/logo/rest-assured.jpg" width="50" height="50" alt="Rest-Assured"/> | <img src="media/logo/Allure.svg" width="50" height="50" alt="Allure"/> | <img src="media/logo/Jenkins.svg" width="50" height="50" alt="Jenkins"/> | <img src="media/logo/Telegram.svg" width="50" height="50" alt="Telegram"/> |
 
-Проект автоматизации тестирования реализован на языке **Java** с применением фреймворков **JUnit 5**, **Selenide** (хотя иконка для Rest-Assured, в тексте указан Selenide - проверьте, что используется) и **Rest-Assured**. Управление проектом осуществляется с помощью сборочного инструмента **Gradle**. Для автоматизированного запуска тестов настроена задача в **Jenkins**, которая генерирует подробный **Allure-отчет** и отправляет результаты выполнения в **Telegram-канал** посредством специализированного бота.
+Проект автоматизации тестирования реализован на языке **Java** с применением фреймворков **JUnit 5**, **Selenide**  и **Rest-Assured**. Управление проектом осуществляется с помощью сборочного инструмента **Gradle**. Для автоматизированного запуска тестов настроена задача в **Jenkins**, которая генерирует подробный **Allure-отчет** и отправляет результаты выполнения в **Telegram-канал** посредством специализированного бота.
 
 ---
 
