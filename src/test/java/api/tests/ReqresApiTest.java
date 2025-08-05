@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.*;
 import static utils.TestData.*;
 import static api.specs.ApiSpecs.*;
 
+@Tag("Jenkins")
 public class ReqresApiTest extends TestBase {
 
     @Owner("Ilya Shchepetin")
