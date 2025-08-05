@@ -47,14 +47,20 @@
 
 ---
 
+Удаленный запуск (Jenkins) используйте команду:
+
+`clean ${TASK}`
+
+---
+
 ## Настройка и запуск сборки в Jenkins
 
-<img src="media/logo/Jenkins.svg" width="25" height="25" alt="Jenkins"/> Настройка и запуск сборки в [Jenkins]([ВАША_ССЫЛКА_НА_JENKINS])
+<img src="media/logo/Jenkins.svg" width="25" height="25" alt="Jenkins"/> Настройка и запуск сборки в [Jenkins]([https://jenkins.autotests.cloud/job/C35-ilyatestdornet-REST_API/])
 
 Для запуска автоматизированной сборки перейдите в раздел `Собрать с параметрами`, выберите необходимые конфигурации и активируйте процесс нажатием кнопки `Собрать`.
 
 <p align="center">
-<a href="[ВАША_ССЫЛКА_НА_JENKINS]"><img src="media/screens/jenkins_main.png" alt="Jenkins1"/></a>
+<a href="[https://jenkins.autotests.cloud/job/C35-ilyatestdornet-REST_API/]"><img src="media/screens/jenkins_main.png" alt="Jenkins1"/></a>
 </p>
 
 По завершении сборки в блоке `История сборок` рядом с номером сборки появится иконка Allure Report. При нажатии на неё откроется сформированный HTML-отчет, содержащий всю тестовую документацию.
@@ -63,7 +69,7 @@
 
 ## Отчет Allure
 
-<img src="media/logo/Allure.svg" width="25" height="25" alt="Allure"/> [Allure]([ВАША_ССЫЛКА_НА_ALLURE]) отчет
+<img src="media/logo/Allure.svg" width="25" height="25" alt="Allure"/> [Allure]([https://jenkins.autotests.cloud/job/C35-ilyatestdornet-REST_API/allure/]) отчет
 
 ### Обзорная страница отчета
 
