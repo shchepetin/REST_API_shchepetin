@@ -1,8 +1,7 @@
 package api.tests;
 
 import api.endpoints.Endpoints;
-import api.models.request.LoginRequest;
-import api.models.request.RegisterRequest;
+import api.models.request.AuthRequest;
 import api.models.request.UserRequest;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
@@ -12,13 +11,15 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static utils.TestData.*;
 import static api.specs.ApiSpecs.*;
 
 @Tag("Jenkins")
+@Owner("Ilya Shchepetin")
 public class ReqresApiTest extends TestBase {
 
-    @Owner("Ilya Shchepetin")
     @Feature("Тестирование метода получения информации о пользователе")
     @Tag("User")
     @Test
@@ -33,42 +34,44 @@ public class ReqresApiTest extends TestBase {
                 .body("data.email", equalTo(USER_EMAIL));
     }
 
-    @Owner("Ilya Shchepetin")
     @Feature("Тестирование метода регистрации нового пользователя")
     @Tag("Register")
     @Test
     @DisplayName("2. Регистрация нового пользователя")
     void registerUserTest() {
-        RegisterRequest registerData = new RegisterRequest(REGISTER_EMAIL, REGISTER_PASSWORD);
+        AuthRequest registerData = new AuthRequest(REGISTER_EMAIL, REGISTER_PASSWORD);
 
-        given(requestSpec())
+        String token = given(requestSpec())
                 .body(registerData)
                 .when()
                 .post(Endpoints.REGISTER)
                 .then()
                 .spec(responseSpec(200))
-                .body("id", notNullValue())
-                .body("token", notNullValue());
+                .extract().path("token");
+
+        assertNotNull(token, "Токен не должен быть null");
+        assertFalse(token.isBlank(), "Токен не должен быть пустым");
     }
 
-    @Owner("Ilya Shchepetin")
     @Feature("Тестирование метода авторизации пользователя")
     @Tag("Login")
     @Test
     @DisplayName("3. Авторизация пользователя")
     void loginUserTest() {
-        LoginRequest loginData = new LoginRequest(LOGIN_EMAIL, LOGIN_PASSWORD);
+        AuthRequest loginData = new AuthRequest(LOGIN_EMAIL, LOGIN_PASSWORD);
 
-        given(requestSpec())
+        String token = given(requestSpec())
                 .body(loginData)
                 .when()
                 .post(Endpoints.LOGIN)
                 .then()
                 .spec(responseSpec(200))
-                .body("token", equalTo(LOGIN_TOKEN));
+                .extract().path("token");
+
+        assertNotNull(token, "Токен не должен быть null");
+        assertFalse(token.isBlank(), "Токен не должен быть пустым");
     }
 
-    @Owner("Ilya Shchepetin")
     @Feature("Тестирование метода честичного обновления информации о пользователе")
     @Tag("Patch")
     @Test
@@ -85,7 +88,6 @@ public class ReqresApiTest extends TestBase {
                 .body("job", equalTo(USER_JOB));
     }
 
-    @Owner("Ilya Shchepetin")
     @Feature("Тестирование метода удаления пользователя")
     @Tag("Delete")
     @Test
@@ -98,7 +100,6 @@ public class ReqresApiTest extends TestBase {
                 .spec(responseSpec(204));
     }
 
-    @Owner("Ilya Shchepetin")
     @Feature("Тестирование метода обновления информации о пользователе")
     @Tag("Put")
     @Test

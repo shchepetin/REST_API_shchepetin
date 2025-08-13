@@ -1,4 +1,4 @@
-# Проект по автоматизации тестирования API сервиса Reqres
+# Проект по автоматизации тестирования API сервиса [Reqres](https://reqres.in/)
 
 <img src="media/logo/reqresin.jpg">
 
